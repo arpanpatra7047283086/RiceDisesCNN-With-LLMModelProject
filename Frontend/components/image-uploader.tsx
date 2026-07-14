@@ -97,18 +97,18 @@ export function ImageUploader({ onImageSelect, isLoading = false }: ImageUploade
           ref={videoRef}
           autoPlay
           playsInline
-          className="w-full rounded-xl max-h-96 bg-black border border-emerald-200"
+          className="w-full rounded-lg max-h-96 bg-black"
         />
         <div className="flex gap-2">
           <button
             onClick={capturePhoto}
-            className="flex-1 bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-xl hover:shadow-lg hover:shadow-emerald-500/50 transition font-medium duration-300"
+            className="flex-1 bg-accent text-accent-foreground py-3 rounded-lg hover:opacity-90 transition font-medium"
           >
             Capture Photo
           </button>
           <button
             onClick={stopCamera}
-            className="flex-1 bg-slate-200 text-slate-800 py-3 rounded-xl hover:bg-slate-300 transition font-medium border border-slate-300"
+            className="flex-1 bg-muted text-muted-foreground py-3 rounded-lg hover:opacity-90 transition font-medium"
           >
             Cancel
           </button>
@@ -121,15 +121,15 @@ export function ImageUploader({ onImageSelect, isLoading = false }: ImageUploade
     return (
       <div className="space-y-4">
         <div className="relative">
-          <img src={preview} alt="Preview" className="w-full rounded-xl max-h-96 object-cover border border-emerald-200" />
+          <img src={preview} alt="Preview" className="w-full rounded-lg max-h-96 object-cover" />
           <button
             onClick={clearImage}
-            className="absolute top-2 right-2 bg-red-500 text-white p-2 rounded-full hover:bg-red-600 transition shadow-lg"
+            className="absolute top-2 right-2 bg-destructive text-white p-2 rounded-full hover:opacity-90 transition"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
-        <p className="text-sm text-emerald-600 text-center font-medium">Image ready for analysis</p>
+        <p className="text-sm text-muted-foreground text-center">Image ready for analysis</p>
       </div>
     )
   }
@@ -139,7 +139,7 @@ export function ImageUploader({ onImageSelect, isLoading = false }: ImageUploade
       <div
         onDrop={handleDrop}
         onDragOver={(e) => e.preventDefault()}
-        className="border-2 border-dashed border-emerald-300 rounded-xl p-10 text-center hover:bg-emerald-50/50 hover:border-emerald-400 transition cursor-pointer bg-emerald-50/30"
+        className="border-2 border-dashed border-primary rounded-lg p-8 text-center hover:bg-secondary/20 transition cursor-pointer"
       >
         <input
           ref={fileInputRef}
@@ -149,17 +149,15 @@ export function ImageUploader({ onImageSelect, isLoading = false }: ImageUploade
           className="hidden"
           disabled={isLoading}
         />
-        <div className="bg-gradient-to-br from-emerald-100 to-teal-100 w-14 h-14 rounded-lg flex items-center justify-center mx-auto mb-4 border border-emerald-200">
-          <Upload className="w-7 h-7 text-emerald-600" />
-        </div>
-        <h3 className="font-semibold text-lg mb-2 text-slate-900">Upload Rice Leaf Image</h3>
-        <p className="text-slate-600 text-sm mb-6">
+        <Upload className="w-12 h-12 text-primary mx-auto mb-3" />
+        <h3 className="font-semibold text-lg mb-1">Upload Rice Leaf Image</h3>
+        <p className="text-muted-foreground text-sm mb-4">
           Drag and drop your image here or click to browse
         </p>
         <button
           onClick={() => fileInputRef.current?.click()}
           disabled={isLoading}
-          className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white px-8 py-2 rounded-lg hover:shadow-lg hover:shadow-emerald-500/50 transition font-medium disabled:opacity-50 duration-300"
+          className="bg-primary text-primary-foreground px-6 py-2 rounded-lg hover:opacity-90 transition font-medium disabled:opacity-50"
         >
           Choose File
         </button>
@@ -172,7 +170,7 @@ export function ImageUploader({ onImageSelect, isLoading = false }: ImageUploade
             startCamera()
           }}
           disabled={isLoading}
-          className="flex-1 bg-slate-100 text-slate-800 py-3 rounded-xl hover:bg-slate-200 transition font-medium flex items-center justify-center gap-2 disabled:opacity-50 border border-slate-200"
+          className="flex-1 bg-accent text-accent-foreground py-3 rounded-lg hover:opacity-90 transition font-medium flex items-center justify-center gap-2 disabled:opacity-50"
         >
           <Camera className="w-5 h-5" />
           Use Camera

@@ -38,58 +38,58 @@ export function Features() {
   ]
 
   return (
-    <section id="features" className="py-20 px-4 bg-gradient-to-b from-slate-50 to-white">
+    <section id="features" className="py-16 px-4">
       <div className="container mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Powerful Features</h2>
-          <p className="text-slate-600 text-lg max-w-2xl mx-auto font-light">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">Powerful Features</h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Everything you need for professional rice leaf disease management
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
           {features.map((feature, i) => {
             const Icon = feature.icon
             return (
-              <div key={i} className="bg-white border border-emerald-100/50 rounded-xl p-8 hover:shadow-xl hover:border-emerald-300 transition duration-300 hover:translate-y-[-4px]">
-                <div className="bg-gradient-to-br from-emerald-50 to-teal-50 w-14 h-14 rounded-lg flex items-center justify-center mb-5 border border-emerald-200">
-                  <Icon className="w-7 h-7 text-emerald-600" />
+              <div key={i} className="bg-card border border-border rounded-lg p-6 hover:shadow-lg transition">
+                <div className="bg-primary/10 w-12 h-12 rounded-lg flex items-center justify-center mb-4">
+                  <Icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 text-slate-900">{feature.title}</h3>
-                <p className="text-slate-600 text-sm leading-relaxed">{feature.description}</p>
+                <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
+                <p className="text-muted-foreground text-sm">{feature.description}</p>
               </div>
             )
           })}
         </div>
 
         {/* Image showcase */}
-        <div className="grid md:grid-cols-2 gap-12 items-center bg-white rounded-2xl p-8 md:p-12 border border-emerald-100">
+        <div className="grid md:grid-cols-2 gap-8 items-center">
           <div>
-            <h3 className="text-3xl md:text-4xl font-bold mb-6 text-slate-900">Professional Disease Analysis</h3>
-            <ul className="space-y-4">
-              <li className="flex gap-4">
-                <span className="text-emerald-500 font-bold text-lg flex-shrink-0 mt-1">✓</span>
-                <span className="text-slate-700">High-resolution image analysis with AI technology</span>
+            <h3 className="text-3xl font-bold mb-4">Professional Disease Analysis</h3>
+            <ul className="space-y-3">
+              <li className="flex gap-3">
+                <span className="text-primary font-bold">✓</span>
+                <span>High-resolution image analysis with AI technology</span>
               </li>
-              <li className="flex gap-4">
-                <span className="text-emerald-500 font-bold text-lg flex-shrink-0 mt-1">✓</span>
-                <span className="text-slate-700">Detailed disease information and symptoms</span>
+              <li className="flex gap-3">
+                <span className="text-primary font-bold">✓</span>
+                <span>Detailed disease information and symptoms</span>
               </li>
-              <li className="flex gap-4">
-                <span className="text-emerald-500 font-bold text-lg flex-shrink-0 mt-1">✓</span>
-                <span className="text-slate-700">Evidence-based treatment recommendations</span>
+              <li className="flex gap-3">
+                <span className="text-primary font-bold">✓</span>
+                <span>Evidence-based treatment recommendations</span>
               </li>
-              <li className="flex gap-4">
-                <span className="text-emerald-500 font-bold text-lg flex-shrink-0 mt-1">✓</span>
-                <span className="text-slate-700">24/7 AI assistant for your questions</span>
+              <li className="flex gap-3">
+                <span className="text-primary font-bold">✓</span>
+                <span>24/7 AI assistant for your questions</span>
               </li>
-              <li className="flex gap-4">
-                <span className="text-emerald-500 font-bold text-lg flex-shrink-0 mt-1">✓</span>
-                <span className="text-slate-700">Field-ready mobile application</span>
+              <li className="flex gap-3">
+                <span className="text-primary font-bold">✓</span>
+                <span>Field-ready mobile application</span>
               </li>
             </ul>
           </div>
-          <div className="relative h-96 rounded-xl overflow-hidden shadow-lg border border-emerald-100">
+          <div className="relative h-96 rounded-lg overflow-hidden">
             <Image
               src="/ai-technology.png"
               alt="AI Technology"
