@@ -4,7 +4,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Simple .env loader to avoid 'environ' dependency
+# Simple .env loader
 def load_env(env_path):
     if os.path.exists(env_path):
         with open(env_path) as f:
@@ -22,10 +22,9 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-^h6#h1os5cety1@+uc1-(yvqj1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True').lower() in ('true', '1', 't')
 
-# Parse ALLOWED_HOSTS
-allowed_hosts_str = os.getenv('ALLOWED_HOSTS', '*')
-ALLOWED_HOSTS = [h.strip() for h in allowed_hosts_str.split(',')] if allowed_hosts_str != '*' else ['*', '.onrender.com']
-
+# --- ALLOWED HOSTS ---
+# Set to ['*'] to resolve the DisallowedHost error on Render.
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 INSTALLED_APPS = [
@@ -34,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'whitenoise.runserver_nostatic', # For whitenoise
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     'corsheaders',
 ]
@@ -42,7 +41,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware', # WhiteNoise middleware
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -98,7 +97,6 @@ USE_TZ = True
 # Static files
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-# Simplified static file storage for Whitenoise
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
