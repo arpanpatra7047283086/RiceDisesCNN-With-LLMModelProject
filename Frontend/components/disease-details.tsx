@@ -131,11 +131,11 @@ export function DiseaseDetails({ disease, onClose }: DiseaseDetailsProps) {
   if (!diseaseInfo && loading) {
     return (
       <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-        <div className="bg-card rounded-lg p-8 max-w-2xl w-full">
+        <div className="bg-white rounded-2xl p-8 max-w-2xl w-full shadow-xl">
           <div className="animate-pulse space-y-4">
-            <div className="h-8 bg-muted rounded w-3/4"></div>
-            <div className="h-4 bg-muted rounded w-full"></div>
-            <div className="h-4 bg-muted rounded w-full"></div>
+            <div className="h-8 bg-slate-200 rounded w-3/4"></div>
+            <div className="h-4 bg-slate-200 rounded w-full"></div>
+            <div className="h-4 bg-slate-200 rounded w-full"></div>
           </div>
         </div>
       </div>
@@ -144,34 +144,36 @@ export function DiseaseDetails({ disease, onClose }: DiseaseDetailsProps) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 overflow-y-auto p-4">
-      <div className="bg-card rounded-lg max-w-4xl w-full shadow-xl my-8">
+      <div className="bg-white rounded-2xl max-w-4xl w-full shadow-2xl my-8 border border-emerald-100">
         {/* Header */}
-        <div className="bg-primary text-primary-foreground p-6 rounded-t-lg flex justify-between items-start">
+        <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-8 rounded-t-2xl flex justify-between items-start">
           <div>
-            <h2 className="text-3xl font-bold mb-2">{disease}</h2>
-            <div className="text-primary-foreground/90">{formatInline(diseaseInfo?.description || '')}</div>
+            <h2 className="text-3xl font-bold mb-3">{disease}</h2>
+            <div className="text-emerald-50 text-sm font-light">{formatInline(diseaseInfo?.description || '')}</div>
           </div>
           <button
             onClick={onClose}
-            className="text-primary-foreground hover:bg-primary-foreground/10 p-2 rounded-lg transition"
+            className="text-white hover:bg-white/20 p-2 rounded-lg transition duration-300"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-6">
+        <div className="p-8 space-y-8">
           {/* Symptoms */}
           <div>
-            <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <AlertTriangle className="w-5 h-5 text-accent" />
-              Symptoms
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+              <div className="bg-orange-100 p-2 rounded-lg">
+                <AlertTriangle className="w-5 h-5 text-orange-600" />
+              </div>
+              <span className="text-slate-900">Symptoms</span>
             </h3>
             <ul className="space-y-2 grid md:grid-cols-2 gap-3">
               {diseaseInfo?.symptoms.map((symptom, i) => (
-                <li key={i} className="flex gap-2">
-                  <span className="text-accent font-bold shrink-0">•</span>
-                  <span className="text-muted-foreground">{formatInline(symptom)}</span>
+                <li key={i} className="flex gap-3">
+                  <span className="text-emerald-500 font-bold shrink-0 text-lg">•</span>
+                  <span className="text-slate-700">{formatInline(symptom)}</span>
                 </li>
               ))}
             </ul>
@@ -179,15 +181,17 @@ export function DiseaseDetails({ disease, onClose }: DiseaseDetailsProps) {
 
           {/* Causes */}
           <div>
-            <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <Thermometer className="w-5 h-5 text-accent" />
-              Causes
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+              <div className="bg-yellow-100 p-2 rounded-lg">
+                <Thermometer className="w-5 h-5 text-yellow-600" />
+              </div>
+              <span className="text-slate-900">Causes</span>
             </h3>
             <ul className="space-y-2 grid md:grid-cols-2 gap-3">
               {diseaseInfo?.causes.map((cause, i) => (
-                <li key={i} className="flex gap-2">
-                  <span className="text-accent font-bold shrink-0">•</span>
-                  <span className="text-muted-foreground">{formatInline(cause)}</span>
+                <li key={i} className="flex gap-3">
+                  <span className="text-emerald-500 font-bold shrink-0 text-lg">•</span>
+                  <span className="text-slate-700">{formatInline(cause)}</span>
                 </li>
               ))}
             </ul>
@@ -195,15 +199,17 @@ export function DiseaseDetails({ disease, onClose }: DiseaseDetailsProps) {
 
           {/* Treatment */}
           <div>
-            <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <Zap className="w-5 h-5 text-accent" />
-              Treatment Methods
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+              <div className="bg-blue-100 p-2 rounded-lg">
+                <Zap className="w-5 h-5 text-blue-600" />
+              </div>
+              <span className="text-slate-900">Treatment Methods</span>
             </h3>
             <ul className="space-y-2 grid md:grid-cols-2 gap-3">
               {diseaseInfo?.treatment.map((method, i) => (
-                <li key={i} className="flex gap-2">
-                  <span className="text-accent font-bold shrink-0">•</span>
-                  <span className="text-muted-foreground">{formatInline(method)}</span>
+                <li key={i} className="flex gap-3">
+                  <span className="text-emerald-500 font-bold shrink-0 text-lg">•</span>
+                  <span className="text-slate-700">{formatInline(method)}</span>
                 </li>
               ))}
             </ul>
@@ -211,15 +217,17 @@ export function DiseaseDetails({ disease, onClose }: DiseaseDetailsProps) {
 
           {/* Prevention */}
           <div>
-            <h3 className="text-xl font-bold mb-3 flex items-center gap-2">
-              <Droplets className="w-5 h-5 text-accent" />
-              Prevention Strategies
+            <h3 className="text-xl font-bold mb-4 flex items-center gap-3">
+              <div className="bg-green-100 p-2 rounded-lg">
+                <Droplets className="w-5 h-5 text-green-600" />
+              </div>
+              <span className="text-slate-900">Prevention Strategies</span>
             </h3>
             <ul className="space-y-2 grid md:grid-cols-2 gap-3">
               {diseaseInfo?.prevention.map((strategy, i) => (
-                <li key={i} className="flex gap-2">
-                  <span className="text-accent font-bold shrink-0">•</span>
-                  <span className="text-muted-foreground">{formatInline(strategy)}</span>
+                <li key={i} className="flex gap-3">
+                  <span className="text-emerald-500 font-bold shrink-0 text-lg">•</span>
+                  <span className="text-slate-700">{formatInline(strategy)}</span>
                 </li>
               ))}
             </ul>
@@ -227,8 +235,8 @@ export function DiseaseDetails({ disease, onClose }: DiseaseDetailsProps) {
 
           {/* Chat Section */}
           {showChat && (
-            <div className="border-t pt-6">
-              <h3 className="text-xl font-bold mb-4">Ask Questions About This Disease</h3>
+            <div className="border-t border-slate-200 pt-6">
+              <h3 className="text-xl font-bold mb-4 text-slate-900">Ask Questions About This Disease</h3>
               <ChatBot disease={disease} />
             </div>
           )}
@@ -236,7 +244,7 @@ export function DiseaseDetails({ disease, onClose }: DiseaseDetailsProps) {
           {!showChat && (
             <button
               onClick={() => setShowChat(true)}
-              className="w-full bg-secondary text-secondary-foreground py-3 rounded-lg hover:opacity-90 transition font-medium"
+              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-3 rounded-xl hover:shadow-lg hover:shadow-emerald-500/50 transition font-semibold duration-300"
             >
               Ask AI Assistant Questions
             </button>

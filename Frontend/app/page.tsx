@@ -77,21 +77,21 @@ export default function Page() {
       <Header />
       <Hero onScrollToDetector={handleScrollToDetector} />
 
-      <section ref={detectorRef} id="detector" className="py-16 px-4 bg-background">
+      <section ref={detectorRef} id="detector" className="py-20 px-4 bg-gradient-to-b from-white to-emerald-50">
         <div className="container mx-auto max-w-2xl">
-          <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold mb-3">Rice Leaf Disease Detection</h2>
-            <p className="text-muted-foreground text-lg">
+          <div className="text-center mb-10">
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Rice Leaf Disease Detection</h2>
+            <p className="text-slate-600 text-lg font-light">
               Upload or capture an image of your rice leaf to get instant diagnosis powered by AI
             </p>
           </div>
 
-          <div className="bg-card rounded-lg p-8 border border-border mb-6">
+          <div className="bg-white rounded-2xl p-8 md:p-10 border border-emerald-100 shadow-lg mb-6">
             <ImageUploader onImageSelect={handleImageSelect} isLoading={loading} />
           </div>
 
           {error && (
-            <div className="bg-destructive/10 border border-destructive text-destructive rounded-lg p-4 mb-6">
+            <div className="bg-red-50 border border-red-200 text-red-700 rounded-xl p-4 mb-6 font-medium">
               {error}
             </div>
           )}
@@ -100,7 +100,7 @@ export default function Page() {
             <button
               onClick={handleAnalyze}
               disabled={loading}
-              className="w-full bg-primary text-primary-foreground py-4 rounded-lg hover:opacity-90 transition font-bold text-lg disabled:opacity-50 flex items-center justify-center gap-2 mb-6"
+              className="w-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white py-4 rounded-xl hover:shadow-lg hover:shadow-emerald-500/50 transition font-bold text-lg disabled:opacity-50 flex items-center justify-center gap-2 mb-6 duration-300"
             >
               {loading ? (
                 <><Loader className="w-5 h-5 animate-spin" /> Analyzing Image...</>
@@ -125,7 +125,7 @@ export default function Page() {
                   setPreview(null)
                   setSelectedFile(null)
                 }}
-                className="w-full bg-secondary text-secondary-foreground py-3 rounded-lg hover:opacity-90 transition font-medium"
+                className="w-full bg-slate-100 text-slate-800 py-3 rounded-xl hover:bg-slate-200 transition font-medium border border-slate-200"
               >
                 Analyze Another Leaf
               </button>
