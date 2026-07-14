@@ -1,54 +1,48 @@
 import os
-from .RagSystem.rag.pipeline import RAGPipeline
-from .RagSystem.llm import create_client, get_response
+import requests
 
-# Global instances
-rag_pipeline = None
-groq_client = None
+
+RAG_BACKEND_URL = os.getenv('RAG_BACKEND_URL')
+# The external RAG Backend URL provided by the user
+RAG_BACKEND_URL = RAG_BACKEND_URL
 
 def init_rag():
-    global rag_pipeline, groq_client
-    if rag_pipeline is None:
-        print("Initializing RAG Pipeline...")
-        try:
-            # The pipeline will load data using paths relative to its own location
-            rag_pipeline = RAGPipeline()
-            rag_pipeline.initialize()
-        except Exception as e:
-            print(f"RAG Init Error: {e}")
-
-    if groq_client is None:
-        api_key = os.getenv("GROQ_API_KEY")
-        if api_key:
-            groq_client = create_client(api_key)
-            print("Groq Client initialized.")
-        else:
-            print("Warning: GROQ_API_KEY not found in environment.")
+    """
+    No local initialization required for external API.
+    """
+    pass
 
 def get_expert_advice(disease_name):
+    """
+    Wrapper to get initial advice for a detected disease.
+    """
     return query_expert(f"The model detected {disease_name}. Provide detailed expert advice about symptoms and management.")
 
 def query_expert(question):
-    global rag_pipeline, groq_client
+    """
+    Queries the external RAG Backend service on Render.
+    """
+    try:
+        # Construct the URL for the chat endpoint on the Render-hosted RAG Backend
+        api_url = f"{RAG_BACKEND_URL.rstrip('/')}/api/chat/"
 
-    if not rag_pipeline or not rag_pipeline.is_ready():
-        return "The expert system is currently initializing. Please try again in a moment."
+        # Prepare the payload expected by the RagBackend api
+        payload = {
+            "message": question,
+            "history": [] # Can be expanded if Frontend supports history
+        }
 
-    if not groq_client:
-        return "Expert AI (Groq) not configured. Please check API key."
+        # Timeout is set to 60s as LLMs on free-tier Render can be slow
+        response = requests.post(api_url, json=payload, timeout=60)
 
-    # 1. Retrieve context from FAISS
-    rag_results = rag_pipeline.query(question)
+        if response.status_code == 200:
+            result = response.json()
+            # The RagBackend returns the response in the 'reply' field
+            return result.get("reply", "No response from expert.")
+        else:
+            print(f"RAG External API Error: {response.status_code} - {response.text}")
+            return f"The expert system is currently unavailable (Status {response.status_code})."
 
-    # 2. Get response from LLM
-    conversation = [{"role": "user", "content": question}]
-    reply, error = get_response(
-        client=groq_client,
-        conversation=conversation,
-        rag_results=rag_results
-    )
-
-    if error:
-        return f"Error getting expert advice: {error}"
-
-    return reply
+    except Exception as e:
+        print(f"Error connecting to RAG Backend: {e}")
+        return "I'm having trouble connecting to the expert system. Please try again later."
