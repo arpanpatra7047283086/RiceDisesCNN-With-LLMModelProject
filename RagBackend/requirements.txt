@@ -1,20 +1,23 @@
-# Django Backend
+# --- Django Core ---
 Django>=4.2.0
 django-cors-headers
+gunicorn
+whitenoise
 
-# LLM & API
+# --- LLM & API ---
 groq
 requests
 
-# RAG & Vector Search
+# --- RAG & AI (Optimized for Production) ---
+# We avoid pinning exact versions to allow pip to find the best pre-built wheels
 faiss-cpu
 fastembed
-numpy
+numpy<2.0.0
 
-# Data Loading & Processing
+# --- Data Processing ---
 pdfplumber
 pandas
 openpyxl
 
-# Optional: For the Streamlit UI (if you still want to run it)
+# --- Optional UI ---
 streamlit
