@@ -1,3 +1,7 @@
+# --- Build Tools ---
+setuptools
+wheel
+
 # --- Django Core ---
 Django>=4.2.0
 django-cors-headers
@@ -9,7 +13,6 @@ groq
 requests
 
 # --- RAG & AI (Optimized for Production) ---
-# We avoid pinning exact versions to allow pip to find the best pre-built wheels
 faiss-cpu
 fastembed
 numpy<2.0.0
