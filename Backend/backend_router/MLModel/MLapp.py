@@ -23,7 +23,7 @@ def predict_disease(img):
         try:
             MODEL_PATH = hf_hub_download(
                 repo_id=REPO_ID,
-                filename="FlowerV1.h5",
+                filename="RLV1.h5",
                 token=HF_TOKEN
             )
             model = tf.keras.models.load_model(MODEL_PATH)
@@ -32,7 +32,7 @@ def predict_disease(img):
             print("Loading class names...")
             CLASS_NAMES_PATH = hf_hub_download(
                 repo_id=REPO_ID,
-                filename="FlowerV1.pkl",
+                filename="RLV1.pkl",
                 token=HF_TOKEN,
             )
             with open(CLASS_NAMES_PATH, 'rb') as f:
