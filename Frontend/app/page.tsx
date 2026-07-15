@@ -83,6 +83,8 @@ export default function Page() {
             <h2 className="text-4xl font-bold mb-3">Rice Leaf Disease Detection</h2>
             <p className="text-muted-foreground text-lg">
               Upload or capture an image of your rice leaf to get instant diagnosis powered by AI
+              <br />
+              The model can identify the following rice <strong>leaf diseases: Brown Spot, Healthy Rice Leaf, Leaf Blast, and Sheath Blight</strong>. It is intended for trial purposes only.....
             </p>
           </div>
 
